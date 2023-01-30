@@ -3,10 +3,10 @@
 #include <iostream>
 #include <cmath>
 #include <string>
-#include <iomanip>
+#include <iomanip> // In order to use setprecision this header was needed
 using namespace std;
 
-// Expected results
+// Expected results:
 // 6 6 4 -> 4
 // 1 1 1 -> 1
 // 1000000000 1000000000 1 -> 1000000000000000000
