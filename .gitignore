@@ -1,3 +1,5 @@
+.vscode
+
 # Remove all output files
 problemsets/*/*
 !problemsets/*/*.cpp
