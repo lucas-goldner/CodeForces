@@ -22,17 +22,32 @@ bool is_rxcy_system(int r_index, int c_index, string r_substring, string c_subst
     return false;
 }
 
-string convert_to_a1_system(string r_substring, int c_value)
+string getLettersForNumber(string number)
 {
-    string r_converted = "";
+    string letters = "";
+    for (int i = 0; i <= number.length() - 1; i++)
+    {
+        int current_number = stoi(number);
+        if (i == number.length() - 1)
+        {
+            int remainder = current_number % 26;
+            char letter = char(remainder + 64);
+            letters.push_back(letter);
+        }
+        else
+        {
+            int quotient = current_number / 26;
+            char letter = char(quotient + 64);
+            letters.push_back(letter);
+        }
+    }
 
-    // for (int i = 0; i <= r_substring.length(); i++)
-    // {
-    //     int number = tolower(r_substring.at(i)) - 96;
-    //     cout << number;
-    // }
+    return letters;
+}
 
-    return "A1" + to_string(c_value);
+string convert_to_a1_system(string c_substring, int r_value)
+{
+    return getLettersForNumber(c_substring) + to_string(r_value);
 }
 
 string convert_from_one_system_to_other(string input)
@@ -43,11 +58,11 @@ string convert_from_one_system_to_other(string input)
     int c_index = input.find(c);
     string r_substring = input.substr(r_index + 1, c_index - 1);
     string c_substring = input.substr(c_index + 1, input.length());
-    int c_value = stoi(c_substring);
+    int r_value = stoi(r_substring);
 
     if (is_rxcy_system(r_index, c_index, r_substring, c_substring))
     {
-        return convert_to_a1_system(r_substring, c_value);
+        return convert_to_a1_system(c_substring, r_value);
     }
     else
     {
