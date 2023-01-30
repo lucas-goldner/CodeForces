@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <string>
+#include <regex>
+#include <cmath>
 using namespace std;
 
 // Expected results:
@@ -45,9 +47,28 @@ string getLettersForNumber(string number)
     return letters;
 }
 
+string getNumbersForLetters(string letters)
+{
+    int number = 0;
+    for (int i = 0; i <= letters.length() - 1; i++)
+    {
+        int currentIndex = letters.length() - 1 - i;
+        int ascii_value = int(letters.at(currentIndex) - 64);
+        double result = pow(26, i);
+        number = number + ascii_value * result;
+    }
+
+    return to_string(number);
+}
+
 string convert_to_a1_system(string c_substring, int r_value)
 {
     return getLettersForNumber(c_substring) + to_string(r_value);
+}
+
+string convert_to_rcxy_system(string y, int x)
+{
+    return "R" + to_string(x) + "C" + getNumbersForLetters(y);
 }
 
 string convert_from_one_system_to_other(string input)
@@ -58,15 +79,21 @@ string convert_from_one_system_to_other(string input)
     int c_index = input.find(c);
     string r_substring = input.substr(r_index + 1, c_index - 1);
     string c_substring = input.substr(c_index + 1, input.length());
-    int r_value = stoi(r_substring);
 
     if (is_rxcy_system(r_index, c_index, r_substring, c_substring))
     {
+        int r_value = stoi(r_substring);
         return convert_to_a1_system(c_substring, r_value);
     }
     else
     {
-        return "RCXY";
+        regex pattern("[A-Za-z]+([0-9]+)");
+        smatch result;
+        regex_search(input, result, pattern);
+        int num = std::stoi(result[1].str());
+        int num_index = input.find(to_string(num));
+        string y_substring = input.substr(0, num_index);
+        return convert_to_rcxy_system(y_substring, num);
     }
 }
 
