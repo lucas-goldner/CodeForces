@@ -10,6 +10,12 @@ using namespace std;
 // 2
 // R23C55   ->  BC23
 // BC23         R23C55
+//
+// 4
+// R4C25    ->  Y4
+// R90C35       AI90
+// AP55         R55C42
+// X83          R83C24
 
 // Notes:
 // RXCY system -> X and Y value e.g: R23C55
@@ -39,8 +45,11 @@ string getLettersForNumber(string number)
         else
         {
             int quotient = current_number / 26;
-            char letter = char(quotient + 64);
-            letters.push_back(letter);
+            if (quotient != 0)
+            {
+                char letter = char(quotient + 64);
+                letters.push_back(letter);
+            }
         }
     }
 
