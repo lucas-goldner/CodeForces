@@ -35,7 +35,7 @@ bool is_rxcy_system(int r_index, int c_index, string r_substring, string c_subst
     return false;
 }
 
-string getLettersForNumber(string number)
+string get_letters_for_number(string number)
 {
     string letters = "";
     int current_number = stoi(number);
@@ -60,7 +60,7 @@ string getLettersForNumber(string number)
     return letters;
 }
 
-string getNumbersForLetters(string letters)
+string get_numbers_for_letters(string letters)
 {
     int number = 0;
     for (int i = 0; i <= letters.length() - 1; i++)
@@ -76,12 +76,12 @@ string getNumbersForLetters(string letters)
 
 string convert_to_a1_system(string c_substring, int r_value)
 {
-    return getLettersForNumber(c_substring) + to_string(r_value);
+    return get_letters_for_number(c_substring) + to_string(r_value);
 }
 
 string convert_to_rcxy_system(string y, int x)
 {
-    return "R" + to_string(x) + "C" + getNumbersForLetters(y);
+    return "R" + to_string(x) + "C" + get_numbers_for_letters(y);
 }
 
 string convert_from_one_system_to_other(string input)
