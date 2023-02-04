@@ -8,6 +8,9 @@ using namespace std;
 //
 // 4 2
 // 0 0 0 0 -> 0
+//
+// 5 5
+// 1 1 1 1 1 -> 5
 
 // Notes:
 // Contestant who earns a score equal to or greater than the k-th place finisher's score will advance to the next round
@@ -15,7 +18,7 @@ using namespace std;
 int count_player_that_will_pass(int n, int k, int player_scores[])
 {
     int players_that_will_pass = 0;
-    int score_to_beat = player_scores[k];
+    int score_to_beat = player_scores[k - 1];
     for (int i = 0; i <= n - 1; i++)
     {
         if (player_scores[i] >= score_to_beat && player_scores[i] > 0)
