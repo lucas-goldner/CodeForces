@@ -1,6 +1,7 @@
 // Problem: https://codeforces.com/problemset/problem/263/A
 
 #include <iostream>
+#include <tuple>
 using namespace std;
 
 // Expected results:
