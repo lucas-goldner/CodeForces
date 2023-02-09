@@ -13,35 +13,32 @@ using namespace std;
 //
 // abcdefg
 // AbCdEfF -> 1
+//
+// aslkjlkasdd
+// asdlkjdajwi -> 1
 
 // Note:
 // http://en.wikipedia.org/wiki/Lexicographical_order
 
-int get_lexical_value(string input)
+int get_ascii_value_of_lower(char c)
 {
-    int lexical_value = 0;
-
-    for (auto &c : input)
-    {
-        lexical_value = lexical_value + tolower(c);
-    }
-
-    return lexical_value;
+    return tolower(c);
 }
 
 int get_lexicographical_order(string one, string two)
 {
-    int difference = 0;
-    int one_lexical_value = get_lexical_value(one);
-    int two_lexical_value = get_lexical_value(two);
-
-    if (one_lexical_value < two_lexical_value)
+    for (int i = 0; i <= one.length() - 1; i++)
     {
-        return -1;
-    }
-    else if (one_lexical_value > two_lexical_value)
-    {
-        return 1;
+        int one_ascii = get_ascii_value_of_lower(one.at(i));
+        int two_ascii = get_ascii_value_of_lower(two.at(i));
+        if (one_ascii < two_ascii)
+        {
+            return -1;
+        }
+        else if (one_ascii > two_ascii)
+        {
+            return 1;
+        }
     }
 
     return 0;
