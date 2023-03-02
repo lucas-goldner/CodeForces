@@ -22,22 +22,20 @@ using namespace std;
 
 string get_rerarranged_group(string arrangement, int number_of_children, int seconds)
 {
-    string current_arrangement = arrangement;
-
-    for (int i = 0; i <= seconds - 1; i++)
+    while (seconds--)
     {
-        for (int j = 0; j <= current_arrangement.length() - 1; j++)
+        for (int i = 1; i < number_of_children; ++i)
         {
-            if (current_arrangement[i] == 'G' && current_arrangement[i - 1] == 'B')
+            if (arrangement[i] == 'G' && arrangement[i - 1] == 'B')
             {
-                current_arrangement[i] = 'B';
-                current_arrangement[i - 1] = 'G';
+                arrangement[i] = 'B';
+                arrangement[i - 1] = 'G';
                 ++i;
             }
         }
     }
 
-    return current_arrangement;
+    return arrangement;
 }
 
 int main()
