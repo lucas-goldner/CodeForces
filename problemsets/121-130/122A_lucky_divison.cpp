@@ -8,6 +8,7 @@ using namespace std;
 // 47   ->  YES
 // 16   ->  YES
 // 78   ->  NO
+// 799  ->  NO
 
 bool contains_only_4_and_7(int n)
 {
@@ -21,6 +22,23 @@ bool contains_only_4_and_7(int n)
     }
 
     return true;
+}
+
+bool divisible_by_some_lucky_number(int n)
+{
+    int i = 4;
+
+    while (n > i)
+    {
+        if (contains_only_4_and_7(i) && n % i == 0)
+        {
+            return true;
+        }
+
+        i++;
+    }
+
+    return false;
 }
 
 int main()
@@ -39,6 +57,11 @@ int main()
         return 0;
     }
     else if (n % 4 == 0)
+    {
+        cout << "YES" << endl;
+        return 0;
+    }
+    else if (divisible_by_some_lucky_number(n))
     {
         cout << "YES" << endl;
         return 0;
