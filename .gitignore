@@ -3,3 +3,4 @@
 # Remove all output files
 problemsets/*/*
 !problemsets/*/*.cpp
+.temp
