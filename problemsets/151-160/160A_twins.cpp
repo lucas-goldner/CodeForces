@@ -9,6 +9,9 @@ using namespace std;
 //
 // 3
 // 2 1 2    ->  2
+//
+// 7
+// 1 10 1 2 1 1 1   ->  1
 
 // Notes:
 // Minimum number of coins, whose sum of values is strictly more than the sum of values of the remaining coins
@@ -18,23 +21,21 @@ int main()
     int n;
     cin >> n;
     int coins[n];
-    int all_coins[n];
     int total_coins = 0;
     for (int i = 0; i < n; i++)
     {
         int coin;
         cin >> coin;
         coins[i] = coin;
-        all_coins[i] = coin;
         total_coins += coin;
     }
 
-    sort(coins, coins + n, less<int>());
+    sort(coins, coins + n, greater<int>());
     int my_coins = 0;
     int iteration = 0;
     while (my_coins <= total_coins / 2)
     {
-        my_coins += all_coins[iteration];
+        my_coins += coins[iteration];
         iteration++;
     }
 
